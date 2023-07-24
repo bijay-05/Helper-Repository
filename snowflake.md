@@ -1,4 +1,5 @@
 ## Is database in snowflake a data warehouse as well ??
+
 Yes, Snowflake is a cloud-based data platform that can be considered both a database and a data warehouse.
 Snowflake provides a fully-managed service for storing, processing, and analyzing data, making it suitable for both transactional and analytical workloads.
 
@@ -21,3 +22,19 @@ This makes it suitable for handling various analytical workloads simultaneously.
 In summary, Snowflake's architecture and capabilities make it a versatile platform that can function as both a database for transactional processing
 and a data warehouse for analytical needs. It is particularly well-suited for businesses and organizations that require a modern, scalable,
 and high-performance solution for storing and analyzing large volumes of data.
+
+## Does virtual warehouse in snowflake read data from database ?
+
+Yes, in Snowflake, a virtual warehouse (often referred to as a compute cluster) is responsible for executing SQL queries and processing data. When you execute a query in Snowflake, the virtual warehouse reads data from the database's storage layer, processes the data, and returns the results to you.
+
+Here's how it works:
+
+1. Storage Layer: Snowflake's data storage is designed to be scalable and highly efficient. Data is stored in a columnar format and separated from compute resources, which allows for easy scaling and separation of storage and processing.
+
+2. Virtual Warehouse (Compute Cluster): A virtual warehouse is a cluster of compute resources allocated for running queries. Snowflake allows you to create and resize virtual warehouses on-demand based on your workload needs. You can choose the size (number of nodes) of the virtual warehouse based on the complexity of your queries and the amount of data being processed.
+
+3. Query Execution: When you submit a SQL query to Snowflake, the query is sent to the virtual warehouse you specified. The virtual warehouse reads the required data from the storage layer, performs the necessary computations, and generates the query results.
+
+4. Elasticity: Snowflake's elasticity allows multiple virtual warehouses to work in parallel, allowing for concurrent query execution. This makes it possible to handle multiple workloads and users simultaneously without affecting performance.
+
+The ability to scale compute resources independently from data storage in Snowflake is one of the key features that make it a powerful cloud data platform. This separation allows you to easily adjust the compute power as needed for your analytical workloads and only pay for the compute resources you use. It also enables Snowflake to deliver high performance and support complex analytical queries on large datasets efficiently.
