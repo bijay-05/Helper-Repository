@@ -1,4 +1,3 @@
-%%writefile products.py
 import random
 import pandas as pd
 
@@ -24,29 +23,23 @@ def convert_list_to_csv(product_list):
     outputs CSV file for each product_subcategory
     """
     products_df = pd.DataFrame.from_dict(product_list, orient='columns')
-    filename = "products" + str(random.randint(1,40)) + ".csv"
-    products_df.to_csv(filename, header=True, index=False, encoding='utf-8')
-     return filename
+    filename = "products.csv"
+    products_df.to_csv(filename, mode='a', header=True, index=False, encoding='utf-8')
+    return
 
 def create_products_in_category(product_category, product_subcategory, brands_2Darray):
     # first create products for each subcategory using above function
     # for each product subcategory we have unique list of brands, so different
     # brands_list must be passed for each product_subcategory
 
-    filename_list = []
-
     for brand_index, product_subcat in enumerate(product_subcategory):
-        print(f"Time for some info {brand_index} : {product_subcat}")
         brands_list = brands_2Darray[brand_index]
         product_list = create_products_in_subcategory(brands_list=brands_list, product_category=product_category, product_subcategory=product_subcat)
 
         # convert into CSV
-        file_name = convert_list_to_csv(product_list)
-        filename_list.append(file_name)
-        print(f"{brand_index + 1} ROUND SUCCESSFUL !!!")
+        convert_list_to_csv(product_list)
     
-    print("Check out files in Pandas !!!")
-    return filename_list
+    return "All Successful"
 
 
 def main():
@@ -59,11 +52,11 @@ def main():
 
     product_subcategory = ["BEERS","RUM","WHISKEY","WINE","FRUIT JUICE"]
 
-    filename_list = create_products_in_category("Drinks and beverages", product_subcategory, brands_array)
+    print(create_products_in_category("Drinks and beverages", product_subcategory, brands_array))
 
     # for beauty and hygience
     brands_array2 = [["nivea", "vaseline", "himalaya","dove","boroplus","patanjali"],
-    ["battas", "plum", "OSHEA", "Lakme", "himalaya"]
+    ["battas", "plum", "OSHEA", "Lakme", "himalaya"],
     ["nivea", "vaseline", "himalaya","dove","boroplus","patanjali"],
     ["hair& shoulders", "sunsilk", "dove", "patanjali","pantene"],
     ["ugen", "reyon", "laryez", "gyudd"],
@@ -72,7 +65,7 @@ def main():
 
     product_subcategory2 = ["Body Lotion","Sun guards and cream", "face wash", "shampoo", "tissue paper", "tooth paste", "soaps & detergents"]
 
-    filename_list2 = create_products_in_category("Beauty and hygiene", product_subcategory2, brands_array2)
+    print(create_products_in_category("Beauty and hygiene", product_subcategory2, brands_array2))
 
     # for dry fruits & snacks
     brands_array3 = [["haldirams aloo", "haldirams mix", "haldirams moong dal", "haldirams sweet", "bikano aloo", "bikano mix"],
@@ -85,7 +78,7 @@ def main():
 
     product_subcategory3 = ["Namkeen", "Chips", "Cashews", "Raisins", "Walnut", "Instant Noodles", "Biscuits & Cookies"]
 
-    filename_list3 = create_products_in_category("Dry fruits and snacks", product_subcategory3, brands_array3)
+    print(create_products_in_category("Dry fruits and snacks", product_subcategory3, brands_array3))
 
     # for daily groceries
     brands_array4 = [["Hulas","Basmati", "Marsee", "india gate"],
@@ -97,17 +90,9 @@ def main():
 
     product_subcategory4 = ["Rice", "Flour", "Olive Oil", "lentils", "Spices", "seasoners"]
 
-    filename_list4 = create_products_in_category("Daily Groceries", product_subcategory4, brands_array4)
+    print(create_products_in_category("Daily Groceries", product_subcategory4, brands_array4))
 
-    return filename_list + filename_list2 + filename_list3 + filename_list4
-
-
-
-def create_single_file(file_name_list):
-    #create dataframe for each CSV file and concat all dataframes
-    #and finally into single CSV file
-    
-
+    return 
 
 
 
