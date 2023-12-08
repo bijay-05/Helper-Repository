@@ -24,6 +24,9 @@ from git bash
 #### donot use username below, use as specified.
 
 `$ ssh -T git@github.com`
+## ssh into server
+`$ssh -i .ssh/keys_file.pem default_user@public_ip`
+
 
 ## Notice
 Please donot use git config --list. It uses vim which cannot be closed.
