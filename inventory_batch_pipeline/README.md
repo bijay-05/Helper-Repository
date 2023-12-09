@@ -17,9 +17,12 @@ $ssh -i .ssh/key_file.pem user@ip_address
 
 ### Connecting with database (psql)
 ```
-$psql --username db_admin --dbname inventory-database --host some_address --port 5432 -p
+$psql --username db_admin --dbname inventory-database -h some_address -p 5432 -W
 
-# -p argument prompts terminal to ask for password of database
+# -W argument prompts terminal to ask for password of database
+
+# copy from files into table
+inventorydb=>\copy table_name from "path to file" WITH DELIMITER ',' CSV HEADER;
 ```
 
 
